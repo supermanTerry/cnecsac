@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" title="Vote">
+<head>
+<meta charset="UTF-8">
+<title>二零二三至二零二四年度董事會選舉</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+h1, h2, #vote{text-align: center;}
+.voteName {
+  background-color: #f4511e;
+  width: 200px;
+}
+.voteNum {
+  background-color: #a4511e;
+  width: 200px;
+}
+.add {
+  background-color: #00d600;
+  width: 130px;
+}
+.minus {
+  background-color: #800000;
+  width: 50px;
+}
+.final {
+  background-color: #0000d6;
+  width: 200px;
+}
+.result {
+  background-color: #0000d6;
+  width: 200px;
+}
+.button {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 24px;
+  margin: 4px 3px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;}
+  
+.add:active, .minus:active {
+  box-shadow: 2px 3px 9px 0px #0f477d;
+  transform: scale(0.99);
+  opacity: 1;
+}
+table, td, th {
+    border: 1px solid black;
+    width: 300px;
+	font-size: 24px;
+	text-align: center;
+}
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+var nameList = ['周淑麗姊妹', '高麗盈姊妹', '黎國鈞弟兄', '李文傑弟兄', '何礎楠弟兄'];
+var part;
+var voter;
+var full;
+$(document).ready(function() {
+	$("#sum").hide();
+	$("#submit").click(function(){		
+
+		$("#sum").show();
+		$("#submit").hide();
+		
+		
+				
+		for (var i=0; i<nameList.length; i++){
+		
+			var element = document.createElement("input");
+			element.setAttribute("type", "button");
+			element.setAttribute("value", nameList[i]);
+			element.setAttribute("name", "can_"+i);
+			element.setAttribute("id", "can_"+i);
+			element.setAttribute("class", "button voteName");
+			element.setAttribute("title", nameList[i]);
+
+			document.getElementById("candidate").appendChild(element);
+				
+			var element2 = document.createElement("input");
+
+			element2.setAttribute("type", "button");
+			element2.setAttribute("value", 0);
+			element2.setAttribute("name", "canVote_"+i);
+			element2.setAttribute("id", "canVote_"+i);
+			element2.setAttribute("class", "button voteNum");
+			element2.setAttribute("title", nameList[i]);
+			element2.setAttribute("disabled", "disabled");
+			document.getElementById("voteNum").appendChild(element2);
+			
+			var element4 = document.createElement("input");
+
+			element4.setAttribute("type", "button");
+			element4.setAttribute("value", "+");
+			element4.setAttribute("name", "canA_"+i);
+			element4.setAttribute("id", "canA_"+i);
+			element4.setAttribute("class", "button add");
+			element4.setAttribute("title", nameList[i]);
+			element4.setAttribute("onclick", "add("+i+")");
+			document.getElementById("oper").appendChild(element4);
+			
+			var element3 = document.createElement("input");
+
+			element3.setAttribute("type", "button");
+			element3.setAttribute("value", "-");
+			element3.setAttribute("name", "canD_"+i);
+			element3.setAttribute("id", "canD_"+i);
+			element3.setAttribute("class", "button minus");
+			element3.setAttribute("title", nameList[i]);
+			element3.setAttribute("onclick", "minus("+i+")");
+			document.getElementById("oper").appendChild(element3);
+						
+		}
+		
+		part  = prompt("出席人數", "");
+		voter = prompt("投票人數", "");
+		full  = prompt("全票數字", "");
+		document.getElementById("part").innerHTML=part;
+		document.getElementById("voter").innerHTML=voter;
+		document.getElementById("full").innerHTML=full;
+		$("#result").show();
+		for (var candidate = 0; candidate < num; candidate++){
+			document.getElementById("canVote_"+candidate).value = full;
+		}
+	});
+		
+	
+});
+</script>
+</head>
+<body>
+<h1>中華傳道會證基堂 二零二三至二零二四年度董事會選舉</h1>
+<h2>二零二二年十二月十一日</h2>
+<br>
+<div id="vote">
+
+<p id="check" type="text" name="check" disabled="true"/>
+
+<input type="button" id="submit" name="submit" class="button final" value="開始" >
+<form>
+
+<div id="result" hidden="true">
+<table class="center">
+<tr><td><label>出席人數: </label></td><td><p id="part" type="text" name="part" disabled="true"/></td></tr>
+<tr><td><label>投票人數: </label></td><td><p id="voter" type="text" name="voter" disabled="true"/></td></tr>
+<tr><td><label>全票數字: </label></td><td><p id="full" type="text" name="full" disabled="true"/></td></tr>
+</table>
+</br>
+</br>
+</div>
+
+<span id="candidate"></span></br>
+
+<span id="voteNum"></span></br>
+
+<span id="oper"></span></br>
+
+<br>
+<input type="button" id="sum" name="sum" value="結果" class="button result" hidden="true">
+
+
+</form>
+</div>
+
+<script>
+	var num = nameList.length;
+	var result;
+	function add(candidate){
+		var count = parseInt(document.getElementById("canVote_"+candidate).value, 10) + 1;
+		document.getElementById("canVote_"+candidate).value = count;
+	}
+	function minus(candidate){
+		var count = parseInt(document.getElementById("canVote_"+candidate).value, 10) - 1;
+		document.getElementById("canVote_"+candidate).value = count;
+	}
+	$("#sum").click(function(){
+
+		for (var candidate = 0; candidate < num; candidate++){
+			$(".minus,.add").hide();
+			$(".minus,.add").attr("disabled", true);
+			$("#can_"+candidate).attr("class", "button final");
+			$("#canVote_"+candidate).attr("class", "button final");
+		}
+		$("#sum").hide();
+		
+	});
+
+</script>
+</body>
+</html>
+
