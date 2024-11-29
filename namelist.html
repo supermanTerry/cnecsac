@@ -19,17 +19,19 @@ $(document).ready(function() {
 const apiKey='AIzaSyDx6kW6R0eV0vC2XH1KJRVdia0lrsfKJTk'; 
 const spreadsheetId = '1A51diw0kQ4m1mmp4Bsn5AxWAmZ-xQGunoUht5PVhb4k'; 
 const sheetName = 'Sheet1'; 
-
+async function getNameList(){
 let nameList = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`)
   .then(response => response.json())
-  .then(data => console.log(data.values))
-  .catch(error => console.error('Error:', error));
-console.log(nameList);
-
-$.each(data, function (i, item) {
+  .then(data => $.each(data, function (i, item) {
 	console.log(i);
     $('#attendants').append('<tr>' + i +'</tr>')
-    });
+    });)
+  .catch(error => console.error('Error:', error));
+}
+
+console.log(nameList);
+
+
 });
 </script>
 </head>
