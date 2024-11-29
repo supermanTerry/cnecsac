@@ -22,15 +22,15 @@ const sheetName = 'Sheet1';
 async function getNameList(){
 let nameList = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`)
   .then(response => response.json())
-  .then(data => $.each(data, function (i, item) {
-	console.log(i);
-    $('#attendants').append('<tr>' + i +'</tr>')
-    }))
+  .then(data => data.values)
   .catch(error => console.error('Error:', error));
 }
 
 let a = getNameList();
-
+$.each(a, function (i, item) {
+	console.log(i);
+    $('#attendants').append('<tr>' + i +'</tr>')
+    })
 
 });
 </script>
