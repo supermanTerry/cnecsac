@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" title="Vote">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" title="Main">
 <head>
 <meta charset="UTF-8">
 <title>Test</title>
@@ -9,67 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-h1, h2, #vote{text-align: center;}
-.voteName {
-  background-color: #f4511e;
-  width: 200px;
-}
-.voteNum {
-  background-color: #a4511e;
-  width: 200px;
-}
-.add {
-  background-color: #00d600;
-  width: 130px;
-}
-.minus {
-  background-color: #800000;
-  width: 50px;
-}
-.final {
-  background-color: #0000d6;
-  width: 200px;
-}
-.result {
-  background-color: #0000d6;
-  width: 200px;
-}
-.button {
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 24px;
-  margin: 4px 3px;
-  opacity: 0.6;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;}
-  
-.add:active, .minus:active {
-  box-shadow: 2px 3px 9px 0px #0f477d;
-  transform: scale(0.99);
-  opacity: 1;
-}
-table, td, th {
-    border: 1px solid black;
-    width: 300px;
-	font-size: 24px;
-	text-align: center;
-}
-table.center {
-  margin-left: auto; 
-  margin-right: auto;
-}
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
-var nameList = ['周淑麗姊妹', '高麗盈姊妹', '陳舒穎姊妹', '李文傑弟兄', '何礎楠弟兄'];
-var part;
-var voter;
-var full;
+
 $(document).ready(function() {
 const apiKey='AIzaSyDx6kW6R0eV0vC2XH1KJRVdia0lrsfKJTk'; 
 const spreadsheetId = '1A51diw0kQ4m1mmp4Bsn5AxWAmZ-xQGunoUht5PVhb4k'; 
@@ -80,23 +25,26 @@ fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${s
   .then(data => console.log(data.values))
   .catch(error => console.error('Error:', error));
 
+console.log(data);
+
+$.each(data, function (i, item) {
+	console.log(i);
+    $('#attendants').append('<tr>' + i +'</tr>')
+    });
 });
 </script>
 </head>
 <body>
-<h1>中華傳道會證基堂 二零二五至二零二六年度董事會選舉</h1>
-<h2>二零二四年十一月二十四日</h2>
+<h1>中華傳道會證基堂 二零二五至二零二六年度公司會員大會</h1>
+<h2>二零二X年XX月XX日</h2>
 <br>
 <div id="vote">
 
-<p id="check" type="text" name="check" disabled="true"/>
-
-<input type="button" id="submit" name="submit" class="button final" value="開始" >
 <form>
 
 <div id="result" hidden="true">
-<table class="center">
-
+<table class="center" id="attendants">
+	
 </table>
 </br>
 </br>
