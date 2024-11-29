@@ -26,7 +26,8 @@ let nameList = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spre
   .catch(error => console.error('Error:', error));
 }
 
-let a = getNameList();
+let a = await getNameList();
+	console.log(a);
 $.each(a, function (i, item) {
 	console.log(i);
     $('#attendants').append('<tr>' + i +'</tr>')
