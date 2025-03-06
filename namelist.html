@@ -20,14 +20,14 @@ const apiKey='AIzaSyDx6kW6R0eV0vC2XH1KJRVdia0lrsfKJTk';
 const spreadsheetId = '1A51diw0kQ4m1mmp4Bsn5AxWAmZ-xQGunoUht5PVhb4k'; 
 const sheetName = 'Sheet1'; 
 async function getNameList(){
-let nameList = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`)
-  .then(response => response.json())
-  .then(data => data.values)
-  .catch(error => console.error('Error:', error));
+	let nameList = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`)
+	  .then(response => response.json())
+	  .then(data => data.values)
+	  .catch(error => console.error('Error:', error));
 	return data;
 }
 
-let a = await getNameList();
+let a = getNameList();
 	console.log(a);
 $.each(a, function (i, item) {
 	console.log(i);
