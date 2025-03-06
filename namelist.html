@@ -24,7 +24,6 @@ async function getNameList(){
 	  .then(response => response.json())
 	  .then(data => data.values)
 	  .catch(error => console.error('Error:', error));
-	return data;
 }
 
 let a = getNameList();
