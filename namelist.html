@@ -24,6 +24,7 @@ let nameList = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spre
   .then(response => response.json())
   .then(data => data.values)
   .catch(error => console.error('Error:', error));
+	return data;
 }
 
 let a = await getNameList();
