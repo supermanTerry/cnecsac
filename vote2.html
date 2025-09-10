@@ -135,13 +135,13 @@ $(document).ready(function() {
 			
 			var element5 = document.createElement("input");
 			element5.setAttribute("type", "button");
-			var currentVote = parseInt(document.getElementById("canVote_"+candidate).value, 10)
+			var currentVote = parseInt(document.getElementById("canVote_"+i).value, 10)
 			if (currentVote>voter/2)
 			    element5.setAttribute("value", "Y");
 			else
 				element5.setAttribute("value", "N");
-			element5.setAttribute("name", "result_"+candidate);
-			element5.setAttribute("id", "result_"+candidate);
+			element5.setAttribute("name", "result_"+i);
+			element5.setAttribute("id", "result_"+i);
 			element5.setAttribute("class", "button voteName");
 			element5.setAttribute("title", "Result");
 
