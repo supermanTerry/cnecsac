@@ -18,6 +18,14 @@ h1, h2, #vote{text-align: center;}
   background-color: #a4511e;
   width: 200px;
 }
+.voteSuccess{
+  background-color: #4ED600;
+  width: 200px;
+}
+.voteNotSuccess{
+  background-color: #D63200;
+  width: 200px;
+}
 .add {
   background-color: #00d600;
   width: 130px;
@@ -124,6 +132,20 @@ $(document).ready(function() {
 			element3.setAttribute("onclick", "minus("+i+")");
 			document.getElementById("oper").appendChild(element3);
 
+			
+			var element5 = document.createElement("input");
+			element5.setAttribute("type", "button");
+			var currentVote = parseInt(document.getElementById("canVote_"+candidate).value, 10)
+			if (currentVote>voter/2)
+			    element5.setAttribute("value", "Y");
+			else
+				element5.setAttribute("value", "N");
+			element5.setAttribute("name", "result_"+candidate);
+			element5.setAttribute("id", "result_"+candidate);
+			element5.setAttribute("class", "button voteName");
+			element5.setAttribute("title", "Result");
+
+			document.getElementById("result").appendChild(element5);
 		}
 		
 		part  = prompt("出席人數", "");
@@ -197,19 +219,6 @@ $(document).ready(function() {
 			$("#canVote_"+candidate).attr("class", "button final");
 
 
-			var element5 = document.createElement("input");
-			element5.setAttribute("type", "button");
-			var currentVote = parseInt(document.getElementById("canVote_"+candidate).value, 10)
-			if (currentVote>voter/2)
-			    element5.setAttribute("value", "Y");
-			else
-				element5.setAttribute("value", "N");
-			element5.setAttribute("name", "result_"+candidate);
-			element5.setAttribute("id", "result_"+candidate);
-			element5.setAttribute("class", "button voteName");
-			element5.setAttribute("title", "Result");
-
-			document.getElementById("result").appendChild(element5);
 		}
 		$("#sum").hide();
 		
