@@ -207,14 +207,17 @@ $(document).ready(function() {
 			var element5 = document.createElement("input");
 			element5.setAttribute("type", "button");
 			var currentVote = parseInt(document.getElementById("canVote_"+candidate).value, 10)
-			if (currentVote>=voter/2)
-			    element5.setAttribute("value", "Y");
-			else
-				element5.setAttribute("value", "N");
+			if (currentVote>=voter/2){
+			    element5.setAttribute("value", "當選");
+				element5.setAttribute("class", "button voteSuccess");
+				element5.setAttribute("title", "當選");
+			}else{
+				element5.setAttribute("value", "未能當選");
+				element5.setAttribute("class", "button voteNotSuccess");				
+				element5.setAttribute("title", "未能當選");
+			}
 			element5.setAttribute("name", "result_"+candidate);
 			element5.setAttribute("id", "result_"+candidate);
-			element5.setAttribute("class", "button voteName");
-			element5.setAttribute("title", "Result");
 
 			document.getElementById("result").appendChild(element5);
 		}
