@@ -201,6 +201,10 @@ $(document).ready(function() {
 			$("#can_"+candidate).attr("class", "button final");
 			$("#canVote_"+candidate).attr("class", "button final");
 		}
+
+		for (var candidate = 0; candidate < num; candidate++){
+			document.getElementById("canVote_"+candidate).innerHTML = document.getElementById("canVote_"+candidate).value + " / " +voter;
+		}
 		$("#sum").hide();
 		
 	});
