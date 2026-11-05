@@ -127,7 +127,7 @@ $(document).ready(function() {
 		
 		part  = prompt("出席人數", "");
 		voter = prompt("收到選票", "");
-		full  = prompt("全票數字", "");
+		full  = prompt("全票", "");
 		wasted= prompt("廢票", "");
 		document.getElementById("part").innerHTML=part;
 		document.getElementById("voter").innerHTML=voter;
@@ -159,8 +159,10 @@ $(document).ready(function() {
 <table class="center">
 <tr><td><label>出席人數: </label></td><td><p id="part" type="text" name="part" disabled="true"/></td></tr>
 <tr><td><label>收到選票: </label></td><td><p id="voter" type="text" name="voter" disabled="true"/></td></tr>
-<tr><td><label>全票數字: </label></td><td><p id="full" type="text" name="full" disabled="true"/></td></tr>
-<tr><td><label>廢票: </label></td><td><p id="wasted" type="text" name="wasted" disabled="true"/></td></tr>
+</table>
+<table class="center">
+<tr><td><label>全票: </label></td><td><p id="full" type="text" name="full" disabled="true"/></td>
+<td><label>廢票: </label></td><td><p id="wasted" type="text" name="wasted" disabled="true"/></td></tr>
 </table>
 </br>
 </br>
@@ -183,7 +185,7 @@ $(document).ready(function() {
 	var num = nameList.length;
 	var result;
 	function add(candidate){
-		var count = parseInt(document.getElementById("canVote_"+candidate).value, 10) < voter?parseInt(document.getElementById("canVote_"+candidate).value, 10) + 1:parseInt(document.getElementById("canVote_"+candidate).value, 10);
+		var count = parseInt(document.getElementById("canVote_"+candidate).value, 10) < (voter-wasted)?parseInt(document.getElementById("canVote_"+candidate).value, 10) + 1:parseInt(document.getElementById("canVote_"+candidate).value, 10);
 		document.getElementById("canVote_"+candidate).value = count;
 	}
 	function minus(candidate){
