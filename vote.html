@@ -55,7 +55,6 @@ h1, h2, #vote{text-align: center;}
 }
 table, td, th {
     border: 1px solid black;
-    width: 300px;
 	font-size: 24px;
 	text-align: center;
 }
@@ -63,12 +62,13 @@ table.center {
   margin-left: auto; 
   margin-right: auto;
 }
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
 var nameList = ['陳舒穎姊妹', '劉皓心姊妹', '李文傑弟兄', '何礎楠弟兄', '羅厚德弟兄'];
-var part, voter, full, wasted, white;
+var part, voter, full, wasted, white, nonAll;
 $(document).ready(function() {
 	$("#sum").hide();
 	$("#submit").click(function(){		
@@ -133,6 +133,7 @@ $(document).ready(function() {
 		document.getElementById("part").innerHTML=part;
 		document.getElementById("voter").innerHTML=voter;
 		document.getElementById("full").innerHTML=full;
+		document.getElementById("nonAll").innerHTML=voter-full-white-wasted;
 		document.getElementById("white").innerHTML=white;
 		document.getElementById("wasted").innerHTML=wasted;
 		
@@ -158,21 +159,21 @@ $(document).ready(function() {
 <form>
 
 <div id="result" hidden="true">
-<table class="center">
-<tr><td><label>出席人數: </label></td><td><p id="part" type="text" name="part" disabled="true"/></td></tr>
+<table class="center" width="50%">
+<tr><td width="20%"><label>出席人數: </label></td><td width="20%"><p id="part" type="text" name="part" disabled="true"/></td></tr>
 <tr><td><label>收到選票: </label></td><td><p id="voter" type="text" name="voter" disabled="true"/></td></tr>
 </table>
-<table class="center">
+<br>
+<table class="center" width="80%">
 <tr>
-	<td><label>全票: </label></td><td><p id="full" type="text" name="full" disabled="true"/></td>
-	<td><label>白票: </label></td><td><p id="white" type="text" name="white" disabled="true"/></td>
-	<td><label>廢票: </label></td><td><p id="wasted" type="text" name="wasted" disabled="true"/></td>
+	<td width="15%"><label>全票: </label></td><td width="10%"><p id="full" type="text" name="full" disabled="true"/></td>
+	<td width="15%"><label>部分票: </label></td><td width="10%"><p id="nonAll" type="text" name="nonAll" disabled="true"/></td>
+	<td width="15%"><label>白票: </label></td><td width="10%"><p id="white" type="text" name="white" disabled="true"/></td>
+	<td width="15%"><label>廢票: </label></td><td width="10%"><p id="wasted" type="text" name="wasted" disabled="true"/></td>
 </tr>
 </table>
-</br>
-</br>
 </div>
-
+<br>
 <span id="candidate"></span></br>
 
 <span id="voteNum"></span></br>
@@ -190,7 +191,7 @@ $(document).ready(function() {
 	var num = nameList.length;
 	var result;
 	function add(candidate){
-		var count = parseInt(document.getElementById("canVote_"+candidate).value, 10) < (voter-wasted)?parseInt(document.getElementById("canVote_"+candidate).value, 10) + 1:parseInt(document.getElementById("canVote_"+candidate).value, 10);
+		var count = parseInt(document.getElementById("canVote_"+candidate).value, 10) < (voter-wasted-white)?parseInt(document.getElementById("canVote_"+candidate).value, 10) + 1:parseInt(document.getElementById("canVote_"+candidate).value, 10);
 		document.getElementById("canVote_"+candidate).value = count;
 	}
 	function minus(candidate){
