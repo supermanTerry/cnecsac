@@ -128,15 +128,12 @@ $(document).ready(function() {
 		}
 		
 		part  = prompt("出席人數", "");
-		voter = prompt("投票人數", "");
+		voter = prompt("收到選票", "");
 		full  = prompt("全票數字", "");
-		document.getElementById("part").innerHTML=part + "/64" ;
-		document.getElementById("voter").innerHTML=voter + "/64";
-		document.getElementById("full").innerHTML=full + "/" + voter;
+		document.getElementById("part").innerHTML=part;
+		document.getElementById("voter").innerHTML=voter;
+		document.getElementById("full").innerHTML=full;
 		
-		document.getElementById("partPercent").innerHTML= (part/64).toFixed(2)*100 + "%" ;
-		document.getElementById("voterPercent").innerHTML= (voter/64).toFixed(2)*100 + "%";
-		document.getElementById("fullPercent").innerHTML= (full/voter).toFixed(2)*100 + "%";
 		
 		$("#result").show();
 		for (var candidate = 0; candidate < num; candidate++){
@@ -160,10 +157,10 @@ $(document).ready(function() {
 <form>
 
 <div id="result" >
-<table class="center" width="60%">
-<tr><td width="40%"><label>出席人數: </label></td><td width="30%"><p id="part" type="text" name="part" disabled="true"/></td><td width="30%"><p id="partPercent" type="text" disabled="true"/></td></tr>
-<tr><td><label>投票人數: </label></td><td><p id="voter" type="text" name="voter" disabled="true"/></td><td><p id="voterPercent" type="text" disabled="true"/></td></tr>
-<tr><td><label>全票數字: </label></td><td><p id="full" type="text" name="full" disabled="true"/></td><td><p id="fullPercent" type="text" disabled="true"/></td></tr>
+<table class="center">
+<tr><td><label>出席人數: </label></td><td><p id="part" type="text" name="part" disabled="true"/></td></tr>
+<tr><td><label>投票人數: </label></td><td><p id="voter" type="text" name="voter" disabled="true"/></td></tr>
+<tr><td><label>全票數字: </label></td><td><p id="full" type="text" name="full" disabled="true"/></td></tr>
 </table>
 </br>
 </br>
