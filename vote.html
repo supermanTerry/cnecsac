@@ -68,7 +68,7 @@ table.center {
 
 <script>
 var nameList = ['陳舒穎姊妹', '劉皓心姊妹', '李文傑弟兄', '何礎楠弟兄', '羅厚德弟兄'];
-var part, voter, full, wasted;
+var part, voter, full, wasted, white;
 $(document).ready(function() {
 	$("#sum").hide();
 	$("#submit").click(function(){		
@@ -128,10 +128,12 @@ $(document).ready(function() {
 		part  = prompt("出席人數", "");
 		voter = prompt("收到選票", "");
 		full  = prompt("全票", "");
+		white = prompt("白票", "");
 		wasted= prompt("廢票", "");
 		document.getElementById("part").innerHTML=part;
 		document.getElementById("voter").innerHTML=voter;
 		document.getElementById("full").innerHTML=full;
+		document.getElementById("white").innerHTML=white;
 		document.getElementById("wasted").innerHTML=wasted;
 		
 		$("#result").show();
@@ -161,8 +163,11 @@ $(document).ready(function() {
 <tr><td><label>收到選票: </label></td><td><p id="voter" type="text" name="voter" disabled="true"/></td></tr>
 </table>
 <table class="center">
-<tr><td><label>全票: </label></td><td><p id="full" type="text" name="full" disabled="true"/></td>
-<td><label>廢票: </label></td><td><p id="wasted" type="text" name="wasted" disabled="true"/></td></tr>
+<tr>
+	<td><label>全票: </label></td><td><p id="full" type="text" name="full" disabled="true"/></td>
+	<td><label>白票: </label></td><td><p id="white" type="text" name="white" disabled="true"/></td>
+	<td><label>廢票: </label></td><td><p id="wasted" type="text" name="wasted" disabled="true"/></td>
+</tr>
 </table>
 </br>
 </br>
