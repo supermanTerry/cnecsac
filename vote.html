@@ -198,13 +198,12 @@ $(document).ready(function() {
 		for (var candidate = 0; candidate < num; candidate++){
 			$(".minus,.add").hide();
 			$(".minus,.add").attr("disabled", true);
+			document.getElementById("canVote_"+candidate).innerHTML = document.getElementById("canVote_"+candidate).value + " / " +voter;
+		
 			$("#can_"+candidate).attr("class", "button final");
 			$("#canVote_"+candidate).attr("class", "button final");
 		}
 
-		for (var candidate = 0; candidate < num; candidate++){
-			document.getElementById("canVote_"+candidate).innerHTML = document.getElementById("canVote_"+candidate).value + " / " +voter;
-		}
 		$("#sum").hide();
 		
 	});
